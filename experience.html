@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expérience sur les gauchers et les droitiers</title>
+</head>
+<body>
+    <div id="avantExperience">
+        <p>Bonjour, je vous remercie de participer à cette expérience, veuillez vous installer sur un bureau ou une table pour la suite de l’expérience. Avant de commencer, veuillez entrer votre jour de naissance dans le carré ci-dessous :</p>
+        <input type="text" id="jourNaissance">
+        <button onclick="verifierJour()">Commencer</button>
+    </div>
+
+    <div id="pendantExperience" style="display: none;">
+        <p>Cette expérience étudie des différences entre les gauchers et les droitiers.</p>
+        <p>Si vous êtes gaucher, veuillez faire ce qui suit avec votre main gauche. Si vous êtes droitier, veuillez le faire avec la main droite.</p>
+    </div>
+
+    <div id="videoInstructions" style="display: none;">
+        <p id="message"></p>
+        <video id="videoGaucher" src="lien-vers-video-gaucher" style="display: none;" controls></video>
+        <video id="videoDroitier" src="lien-vers-video-droitier" style="display: none;" controls></video>
+    </div>
+
+    <div id="finExperience" style="display: none;">
+        <p>Veuillez garder cette position durant toute l’expérience et répondre avec votre autre main en appuyant sur la touche espace.</p>
+    </div>
+
+    <script>
+        function verifierJour() {
+            var jourNaissance = parseInt(document.getElementById("jourNaissance").value);
+            var avantExperienceDiv = document.getElementById("avantExperience");
+            var pendantExperienceDiv = document.getElementById("pendantExperience");
+            var videoInstructionsDiv = document.getElementById("videoInstructions");
+            var finExperienceDiv = document.getElementById("finExperience");
+            var message = document.getElementById("message");
+
+            avantExperienceDiv.style.display = "none";
+            pendantExperienceDiv.style.display = "block";
+
+            if (jourNaissance % 2 === 0) { // Si le jour de naissance est pair
+                message.textContent = "Veuillez s’il vous plait poser votre main à plat comme montré dans la vidéo en exerçant une légère pression contre la table.";
+                document.getElementById("videoGaucher").style.display = "block";
+            } else { // Si le jour de naissance est impair
+                message.textContent = "Veuillez s’il vous plait comme montré dans la vidéo ci-dessous, placer votre main en dessous de la table et la tirer vers vous légèrement comme si vous vouliez soulever la table.";
+                document.getElementById("videoDroitier").style.display = "block";
+            }
+
+            videoInstructionsDiv.style.display = "block";
+            finExperienceDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
+
